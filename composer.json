@@ -1,0 +1,35 @@
+{
+    "name": "wpillar/bates",
+    "description": "PHP lib for interacting with Amazon's Product Advertising API",
+    "keywords": ["amazon", "bates", "product", "advertising", "api"],
+    "homepage": "https://github.com/wpillar/bates",
+
+    "version": "0.1.0",
+
+    "license": "MIT",
+    "type": "library",
+
+    "authors": [
+        {
+            "name": "Will Pillar",
+            "email": "me@willpillar.com",
+            "homepage": "http://github.com/wpillar",
+            "role": "Developer"
+        }
+    ],
+
+    "autoload": {
+        "psr-0": {
+            "Bates": ["./lib"]
+        }
+    },
+
+    "require": {
+        "php": ">=5.3.0"
+    },
+
+    "require-dev": {
+        "mockery/mockery": "~0.8.0",
+        "phpunit/phpunit": "~3.7.0"
+    }
+}
