@@ -3,7 +3,7 @@ all: install
 
 # Install dependencies
 install:
-	@composer install --dev
+	@php composer.phar install --dev
 
 # Run test suite
 test:
