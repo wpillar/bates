@@ -3,6 +3,17 @@ Bates
 
 A PHP library for interacting with Amazon's Product Advertising API across multiple locales.
 
+### Usage ###
+
+```php
+$request = new \Bates\Request(new \Bates\Locale\UK(), new \Bates\ObjectResponse(), 'accessKey', 'secretKey');
+$request->setCategory('Books');
+
+$response = $request->search('Harry Potter');
+
+var_dump($response);
+```
+
 Henry Walter Bates
 ------------------
 ![Bates](http://upload.wikimedia.org/wikipedia/en/thumb/6/6a/HenryWalterBates.JPG/220px-HenryWalterBates.JPG)
