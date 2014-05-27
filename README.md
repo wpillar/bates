@@ -7,7 +7,7 @@ A PHP library for interacting with Amazon's Product Advertising API across multi
 
 We recommend using [Composer](https://getcomposer.org/doc/00-intro.md#globally) to install Bates. First you'll need to declare the repository so Composer knows where to find it. Add this to your composer.json:
 
-```json
+```
 "repositories": [
     {
         "type": "git",
@@ -18,7 +18,7 @@ We recommend using [Composer](https://getcomposer.org/doc/00-intro.md#globally) 
 
 Then add this:
 
-```json
+```
 "require": {
     "wpillar/bates": "dev-master",
 }
