@@ -4,3 +4,4 @@ vendor
 composer.phar
 temp.php
 .DS_Store
+.idea
