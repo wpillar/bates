@@ -136,8 +136,9 @@ class Request
 
     private function buildSignature($queryString)
     {
-        $queryString = str_replace(',','%2C', $queryString);
-        $queryString = str_replace(':','%3A', $queryString);
+        $queryString = str_replace(',', '%2C', $queryString);
+        $queryString = str_replace(':', '%3A', $queryString);
+        $queryString = str_replace('+', '%20', $queryString);
 
         $queryStringArray = explode('&', $queryString);
 
@@ -147,7 +148,9 @@ class Request
 
         $queryString = $this->locale->getRequestSignatureString().$queryString;
 
-        return base64_encode(hash_hmac("sha256", $queryString, $this->secretKey, true));
+        $signature = base64_encode(hash_hmac("sha256", $queryString, $this->secretKey, true));
+
+        return $signature;
     }
 
     private function call($url)
