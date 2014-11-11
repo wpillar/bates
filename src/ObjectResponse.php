@@ -1,7 +1,8 @@
 <?php
-namespace Bates;
 
-class JsonResponse implements ResponseInterface
+namespace Pillar\Bates;
+
+class ObjectResponse implements ResponseInterface
 {
     public $xml;
 
@@ -12,11 +13,7 @@ class JsonResponse implements ResponseInterface
 
     public function get()
     {
-        $obj = $this->parseXml();
-
-        $json = json_encode($obj);
-
-        return $json;
+        return $this->parseXml();
     }
 
     public function getObject()

@@ -1,5 +1,6 @@
 <?php
-namespace Bates;
+
+namespace Pillar\Bates;
 
 class Request
 {

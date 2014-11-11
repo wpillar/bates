@@ -1,5 +1,6 @@
 <?php
-namespace Bates\Locale;
+
+namespace Pillar\Bates\Locale;
 
 class FR implements LocaleInterface
 {

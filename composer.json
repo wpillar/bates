@@ -19,17 +19,17 @@
     ],
 
     "autoload": {
-        "psr-0": {
-            "Bates": ["./lib"]
+        "psr-4": {
+            "Pillar\\Bates\\": ["./src"]
         }
     },
 
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.4.0"
     },
 
     "require-dev": {
-        "mockery/mockery": "~0.8.0",
-        "phpunit/phpunit": "~3.7.0"
+        "mockery/mockery": "~0.9",
+        "phpunit/phpunit": "~3.7"
     }
 }
