@@ -18,9 +18,9 @@ class Image
     protected $height;
 
     /**
-     * @param $url
-     * @param $width
-     * @param $height
+     * @param string $url
+     * @param integer $width
+     * @param integer $height
      */
     public function __construct($url, $width, $height)
     {
