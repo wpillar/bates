@@ -135,7 +135,7 @@ class Request
      */
     public function setPage($page)
     {
-        $this->page = $page;
+        $this->page = (int) $page;
     }
 
     /**
