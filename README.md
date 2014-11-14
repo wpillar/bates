@@ -1,6 +1,8 @@
 Bates
 =====
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/26e940c1-de6f-4d65-a166-5a46241a0558/mini.png)](https://insight.sensiolabs.com/projects/26e940c1-de6f-4d65-a166-5a46241a0558)
+
 A PHP library for interacting with Amazon's Product Advertising API across multiple locales.
 
 ### Installation ###
