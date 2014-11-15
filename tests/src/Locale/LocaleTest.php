@@ -1,5 +1,6 @@
 <?php
-namespace Bates\Locale;
+
+namespace Pillar\Bates\Locale;
 
 use Mockery as m;
 
