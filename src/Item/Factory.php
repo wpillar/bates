@@ -14,9 +14,8 @@ class Factory implements FactoryInterface
      */
     public function build(SimpleXMLElement $xml)
     {
-        $item = new Item();
-        $item->setAsin((string) $xml->ASIN);
-        $item->setTitle((string) $xml->ItemAttributes->Title);
+        $class = $this->getItemClassName($xml);
+        $item = new $class($xml);
 
         if (isset($xml->ImageSets)) {
             $imageSet = $xml->ImageSets->ImageSet;
@@ -70,5 +69,16 @@ class Factory implements FactoryInterface
         }
 
         return $imageSet;
+    }
+
+    /**
+     * @param SimpleXMLElement $xml
+     * @return string
+     */
+    protected function getItemClassName(SimpleXMLElement $xml)
+    {
+        $productGroup = (string) $xml->ItemAttributes->ProductGroup;
+        $productGroup = __NAMESPACE__ . '\\' . $productGroup;
+        return class_exists($productGroup) ? $productGroup : Item::class;
     }
 }
