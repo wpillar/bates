@@ -6,5 +6,5 @@ install:
 	@composer install --dev
 
 # Run test suite
-test:
-	@./vendor/bin/phpunit
+test-unit:
+	@./vendor/bin/phpunit --testsuite unit
