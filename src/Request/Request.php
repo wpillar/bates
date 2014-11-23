@@ -4,6 +4,7 @@ namespace Pillar\Bates\Request;
 
 use Pillar\Bates\Item\Factory as ItemFactory;
 use Pillar\Bates\Item\FactoryInterface as ItemFactoryInterface;
+use Pillar\Bates\Locale\Factory as LocaleFactory;
 use Pillar\Bates\Locale\LocaleInterface;
 use Pillar\Bates\Response\Factory as ResponseFactory;
 use Pillar\Bates\Response\FactoryInterface as ResponseFactoryInterface;
@@ -93,12 +94,15 @@ class Request
     }
 
     /**
-     * @param LocaleInterface $locale
+     * @param string $localeString
      * @param array $config
      * @return Request
      */
-    public static function factory(LocaleInterface $locale, array $config)
+    public static function factory($localeString, array $config)
     {
+        $localeFactory = new LocaleFactory();
+        $locale = $localeFactory->build($localeString);
+
         return new static(
             $locale,
             new ResponseFactory(),
