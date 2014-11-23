@@ -8,6 +8,7 @@ use Pillar\Bates\Locale\LocaleInterface;
 use Pillar\Bates\Response\Factory as ResponseFactory;
 use Pillar\Bates\Response\FactoryInterface as ResponseFactoryInterface;
 use Pillar\Bates\Response\ResponseInterface;
+use Pillar\SimpleDom\Element;
 
 class Request
 {
@@ -226,13 +227,9 @@ class Request
      */
     protected function buildResponse($xmlString)
     {
-        $xmlString = str_replace(["\n", "\r", "\t"], '', $xmlString);
-        $xmlString = trim(str_replace('"', "'", $xmlString));
-
-        $xml = simplexml_load_string($xmlString);
-
+        $xml = Element::xml($xmlString);
         $items = $this->itemFactory->buildCollection($xml);
-        return $this->responseFactory->build($items);
+        return $this->responseFactory->build($items, $xml);
     }
 
     /**

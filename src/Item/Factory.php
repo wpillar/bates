@@ -4,36 +4,36 @@ namespace Pillar\Bates\Item;
 
 use Pillar\Bates\Item\Image\Image;
 use Pillar\Bates\Item\Image\ImageSet;
-use SimpleXMLElement;
+use Pillar\SimpleDom\Element;
 
 class Factory implements FactoryInterface
 {
     /**
-     * @param SimpleXMLElement $xml
+     * @param Element $xml
      * @return Item
      */
-    public function build(SimpleXMLElement $xml)
+    public function build(Element $xml)
     {
         $class = $this->getItemClassName($xml);
         $item = new $class($xml);
 
-        if (isset($xml->ImageSets)) {
-            $imageSet = $xml->ImageSets->ImageSet;
-            $item->setImages($this->buildImageSet($imageSet->children()));
+        if ($xml->getElement('ImageSets')) {
+            $imageSet = $xml->getElement('ImageSets')->getElement('ImageSet');
+            $item->setImages($this->buildImageSet($imageSet));
         }
 
         return $item;
     }
 
     /**
-     * @param SimpleXMLElement $xml
+     * @param Element $xml
      * @return ItemCollection
      */
-    public function buildCollection(SimpleXMLElement $xml)
+    public function buildCollection(Element $xml)
     {
         $collection = new ItemCollection();
 
-        foreach ($xml->Items->Item as $item) {
+        foreach ($xml->getElements('Items') as $item) {
             $collection->addItem($this->build($item));
         }
 
@@ -41,10 +41,10 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * @param SimpleXMLElement $xml
+     * @param Element $xml
      * @return ImageSet
      */
-    protected function buildImageSet(SimpleXMLElement $xml)
+    protected function buildImageSet(Element $xml)
     {
         $imageNames = [
             'SwatchImage' => 'swatch',
@@ -61,9 +61,9 @@ class Factory implements FactoryInterface
             if (array_key_exists($name, $imageNames)) {
                 $name = $imageNames[$name];
                 $imageSet->addImage($name, new Image(
-                    (string) $image->URL,
-                    (int) $image->Width,
-                    (int) $image->Height
+                    (string) $image->getValue('URL'),
+                    (int) $image->getValue('Width'),
+                    (int) $image->getValue('Height')
                 ));
             }
         }
@@ -72,12 +72,12 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * @param SimpleXMLElement $xml
+     * @param Element $xml
      * @return string
      */
-    protected function getItemClassName(SimpleXMLElement $xml)
+    protected function getItemClassName(Element $xml)
     {
-        $productGroup = (string) $xml->ItemAttributes->ProductGroup;
+        $productGroup = (string) $xml->getElement('ItemAttributes')->getValue('ProductGroup');
         $productGroup = __NAMESPACE__ . '\\' . $productGroup;
         return class_exists($productGroup) ? $productGroup : Item::class;
     }

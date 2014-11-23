@@ -3,14 +3,14 @@
 namespace Pillar\Bates\Item;
 
 use Pillar\Bates\Item\Image\ImageSet;
-use SimpleXMLElement;
+use Pillar\SimpleDom\Element;
 
 class Item implements ItemInterface
 {
     protected $xml;
     protected $images;
 
-    public function __construct(SimpleXMLElement $xml)
+    public function __construct(Element $xml)
     {
         $this->xml = $xml;
     }
@@ -20,7 +20,7 @@ class Item implements ItemInterface
      */
     public function getAsin()
     {
-        return (string) $this->xml->ASIN;
+        return (string) $this->xml->getValue('ASIN');
     }
 
     /**
@@ -28,7 +28,7 @@ class Item implements ItemInterface
      */
     public function getTitle()
     {
-        return (string) $this->xml->ItemAttributes->Title;
+        return (string) $this->xml->getElement('ItemAttributes')->getValue('Title');
     }
 
     /**

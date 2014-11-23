@@ -4,6 +4,7 @@ namespace Pillar\Bates\Response;
 
 use Pillar\Bates\Item\ItemCollection;
 use Pillar\Bates\Item\ItemInterface;
+use Pillar\SimpleDom\Element;
 
 class Response implements ResponseInterface
 {
@@ -13,11 +14,18 @@ class Response implements ResponseInterface
     protected $items;
 
     /**
-     * @param ItemCollection $items
+     * @var Element
      */
-    public function __construct(ItemCollection $items)
+    protected $xml;
+
+    /**
+     * @param ItemCollection $items
+     * @param Element $xml
+     */
+    public function __construct(ItemCollection $items, Element $xml)
     {
         $this->items = $items;
+        $this->xml = $xml;
     }
 
     /**
@@ -26,5 +34,13 @@ class Response implements ResponseInterface
     public function getResult()
     {
         return $this->items->count() === 1 ? $this->items->first() : $this->items;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRawResponse()
+    {
+        return $this->xml->asXml();
     }
 }

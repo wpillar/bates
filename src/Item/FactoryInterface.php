@@ -2,19 +2,19 @@
 
 namespace Pillar\Bates\Item;
 
-use SimpleXMLElement;
+use Pillar\SimpleDom\Element;
 
 interface FactoryInterface
 {
     /**
-     * @param SimpleXMLElement $xml
+     * @param Element $xml
      * @return Item
      */
-    public function build(SimpleXMLElement $xml);
+    public function build(Element $xml);
 
     /**
-     * @param SimpleXMLElement $xml
+     * @param Element $xml
      * @return ItemCollection
      */
-    public function buildCollection(SimpleXMLElement $xml);
+    public function buildCollection(Element $xml);
 }

@@ -11,4 +11,9 @@ interface ResponseInterface
      * @return ItemCollection|ItemInterface
      */
     public function getResult();
+
+    /**
+     * @return string
+     */
+    public function getRawResponse();
 }
